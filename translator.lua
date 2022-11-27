@@ -7,6 +7,13 @@
 if not game['Loaded'] then game['Loaded']:Wait() end; repeat wait(.06) until game:GetService('Players').LocalPlayer ~= nil
 local YourLang = "en" -- Language code that the messages are going to be translated to
 
+
+if syn then
+	http_request = syn.request
+elseif c == "ScriptWare" then
+	http_request = http.request
+end
+
 local googlev = isfile'googlev.txt' and readfile'googlev.txt' or ''
 
 function googleConsent(Body) -- Because google really said: "Fuck you."
@@ -23,7 +30,7 @@ end
 local function got(url, Method, Body) -- Basic version of https://www.npmjs.com/package/got using synapse's request API for google websites
     Method = Method or "GET"
     
-    local res = syn.request({
+    local res = http_request({
         Url = url,
         Method = Method,
         Headers = {cookie="CONSENT=YES+"..googlev},
@@ -33,7 +40,7 @@ local function got(url, Method, Body) -- Basic version of https://www.npmjs.com/
     if res.Body:match('https://consent.google.com/s') then
         print('consent')
         googleConsent(res.Body)
-        res = syn.request({
+        res = http_request({
             Url = url,
             Method = "GET",
             Headers = {cookie="CONSENT=YES+"..googlev}
