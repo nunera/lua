@@ -14,6 +14,10 @@ elseif c == "ScriptWare" then
 	http_request = http.request
 end
 
+if http_request == nil then
+	return
+end
+
 local googlev = isfile'googlev.txt' and readfile'googlev.txt' or ''
 
 function googleConsent(Body) -- Because google really said: "Fuck you."
