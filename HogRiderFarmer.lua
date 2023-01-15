@@ -70,7 +70,7 @@ local bdelay = Farmer:AddSlider({
 })
 
 local bdelay = Farmer:AddSlider({
-    Name = "Block Delay",
+    Name = "Hold Delay",
     Min = 0,
     Max = 1,
     Default = .1,
