@@ -20,7 +20,6 @@ local farm = Farmer:AddToggle({
                 workspace.Characters[plr].CharacterHandler.M1:FireServer("Down", false)
                 task.wait(del)
                 workspace.Characters[plr].CharacterHandler.F:FireServer("Down")
-                task.wait(hdel)
                 workspace.Characters[plr].CharacterHandler.F:FireServer("Up")
                 task.wait(bdel)
             end
@@ -66,19 +65,6 @@ local bdelay = Farmer:AddSlider({
     ValueName = "Seconds",
     Callback = function(val)
         bdel = val
-    end
-})
-
-local bdelay = Farmer:AddSlider({
-    Name = "Hold Delay",
-    Min = 0,
-    Max = 1,
-    Default = .1,
-    Color = Color3.fromRGB(225,80,90),
-    Increment = .01,
-    ValueName = "Seconds",
-    Callback = function(val)
-        hdel = val
     end
 })
 
